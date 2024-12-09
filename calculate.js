@@ -18,7 +18,6 @@ class Calculate {
 	}
 
 	splitUsingCommaAndNewLine(numbers) {
-		console.log('Split using comma and newline', numbers);
 		return numbers.replace(/\\n/g, ',');
 	}
 
@@ -49,8 +48,17 @@ class Calculate {
 
 	calculateNumbers(numbers, delimiter = ',') {
 		const arr = numbers.split(delimiter).map(Number);
-		console.log(numbers, arr);
 
+		this.checkNegativeNumber(arr);
 		return arr.reduce((sum, num) => sum + num, 0);
+	}
+
+	checkNegativeNumber(numbers) {
+		let output = [];
+		let outArr = numbers.filter((el) => el < 0);
+
+		if (outArr.length > 0) {
+			throw new Error(`negative numbers not allowed ${outArr.join(',')}`);
+		}
 	}
 }

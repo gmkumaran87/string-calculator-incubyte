@@ -53,3 +53,14 @@ h6 {
 	color: #fff;
 	border-radius: 5px;
 }
+
+.calculator-result {
+	display: none;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+
+.active {
+	display: flex;
+}
