@@ -5,15 +5,21 @@ class Calculate {
 	}
 
 	add(numbers) {
+		this.numbers = '';
+		this.delimiter = ',';
 		this.validateInput(numbers);
 
 		if (this.isCustomDelimiter(numbers)) {
 			this.delimiter = this.getCustomDelimiter(numbers);
 			this.numbers = this.sanitizeString(numbers, 5);
-		} else if (this.isCommaAndNewLine) {
+		} else if (this.isCommaAndNewLine(numbers)) {
 			this.numbers = this.splitUsingCommaAndNewLine(numbers);
+			console.log('Comma and new line', numbers, this.numbers);
+		} else {
+			this.numbers = numbers;
 		}
 
+		console.log(this.numbers, this.delimiter);
 		return this.calculateNumbers(this.numbers, this.delimiter);
 	}
 
@@ -22,7 +28,8 @@ class Calculate {
 	}
 
 	sanitizeString(string, pos) {
-		return string.slice(pos);
+		// console.log('Sanitizing string', string, );
+		return string.slice(3).replace(/\\n/g, '');
 	}
 	validateInput(input) {
 		if (!input) {
@@ -40,7 +47,7 @@ class Calculate {
 	}
 
 	isCommaAndNewLine(numbers) {
-		return numbers.include('\n|,');
+		return numbers.includes('\\n');
 	}
 
 	getCustomDelimiter(numbers) {
@@ -49,13 +56,12 @@ class Calculate {
 
 	calculateNumbers(numbers, delimiter = ',') {
 		const arr = numbers.split(delimiter).map(Number);
-
+		console.log('Calculate', arr, numbers, delimiter);
 		this.checkNegativeNumber(arr);
 		return arr.reduce((sum, num) => sum + num, 0);
 	}
 
 	checkNegativeNumber(numbers) {
-		let output = [];
 		let outArr = numbers.filter((el) => el < 0);
 
 		if (outArr.length > 0) {
@@ -63,3 +69,5 @@ class Calculate {
 		}
 	}
 }
+
+module.exports = Calculate;
