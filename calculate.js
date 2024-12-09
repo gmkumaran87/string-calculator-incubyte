@@ -26,6 +26,7 @@ class Calculate {
 	}
 	validateInput(input) {
 		if (!input) {
+			// return 'Error: Invalid input';
 			throw new Error('Input is required');
 		}
 	}

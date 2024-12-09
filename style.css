@@ -61,6 +61,11 @@ h6 {
 	gap: 1rem;
 }
 
+.error {
+	display: none;
+	color: red;
+}
+
 .active {
 	display: flex;
 }
