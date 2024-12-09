@@ -14,12 +14,10 @@ class Calculate {
 			this.numbers = this.sanitizeString(numbers, 5);
 		} else if (this.isCommaAndNewLine(numbers)) {
 			this.numbers = this.splitUsingCommaAndNewLine(numbers);
-			console.log('Comma and new line', numbers, this.numbers);
 		} else {
 			this.numbers = numbers;
 		}
 
-		console.log(this.numbers, this.delimiter);
 		return this.calculateNumbers(this.numbers, this.delimiter);
 	}
 
@@ -28,12 +26,10 @@ class Calculate {
 	}
 
 	sanitizeString(string, pos) {
-		// console.log('Sanitizing string', string, );
 		return string.slice(3).replace(/\\n/g, '');
 	}
 	validateInput(input) {
 		if (!input) {
-			// return 'Error: Invalid input';
 			throw new Error('Input is required');
 		}
 	}
@@ -56,7 +52,6 @@ class Calculate {
 
 	calculateNumbers(numbers, delimiter = ',') {
 		const arr = numbers.split(delimiter).map(Number);
-		console.log('Calculate', arr, numbers, delimiter);
 		this.checkNegativeNumber(arr);
 		return arr.reduce((sum, num) => sum + num, 0);
 	}

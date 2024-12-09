@@ -23,10 +23,8 @@ function handleCalculate(e) {
 		}
 		input.value = '';
 	} catch (error) {
-		console.log('Error:', error, errorClass);
 		calcResult.classList.remove('active');
 		errorClass.classList.add('active');
-
 		errorMsg.textContent = error.message;
 	}
 }
